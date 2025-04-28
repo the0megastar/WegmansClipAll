@@ -1,23 +1,23 @@
 document.getElementById('clipCoupons').addEventListener('click', async () => {
   const statusDiv = document.getElementById('status');
   
-  // Get current active tab
+  // Current Actice Tab
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   
-  // Check if we're on a Wegmans website
+  // Website Check
   if (!tab.url.includes('wegmans.com') && !tab.url.includes('shop.wegmans.com')) {
     statusDiv.textContent = 'Please navigate to the Wegmans coupons page first.';
     return;
   }
   
   try {
-    // Execute the clipping script
+    // Execute the Script
     const result = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       function: clipAllCoupons
     });
     
-    // Display the result
+    // Display results
     if (result && result[0]) {
       const count = result[0].result;
       statusDiv.textContent = `${count} coupons clipped successfully!`;
@@ -27,18 +27,17 @@ document.getElementById('clipCoupons').addEventListener('click', async () => {
   }
 });
 
-// Function to be executed in the context of the web page
 function clipAllCoupons() {
-  // Select all coupon clip buttons using the exact selector from the website
+  // Select All Clip Coupon Buttons In View, Manual Scroll Down May Be Needed
   const clipButtons = document.querySelectorAll('button.clip-button');
   
   console.log(`Found ${clipButtons.length} coupon buttons to clip`);
   
-  // Loop through each button and trigger a click event with a delay
+  // Loop Through Each Button. Trigger Click. Delay.
   let clippedCount = 0;
   
   Array.from(clipButtons).forEach((button, index) => {
-    // Add a small delay between clicks to prevent rate limiting
+    // Delay
     setTimeout(() => {
       try {
         button.click();
@@ -47,9 +46,9 @@ function clipAllCoupons() {
       } catch (e) {
         console.error(`Error clicking button ${index + 1}:`, e);
       }
-    }, index * 300); // 300ms delay between each click
+    }, index * 300); // Delay Between Each Click
   });
   
-  // Return the number of coupons we attempted to clip
+  // Return Number Of Clipped Coupons
   return clipButtons.length;
 }
