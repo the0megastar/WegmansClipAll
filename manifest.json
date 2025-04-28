@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Wegmans Coupon Clipper",
+  "short_name": "WegmansClipAll",
+  "version": "1.0",
+  "description": "Automatically clips all available coupons on Wegmans website",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [
+    "*://*.wegmans.com/*",
+    "*://*.shop.wegmans.com/*"
+  ]
+}
