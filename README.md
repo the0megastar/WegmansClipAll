@@ -2,7 +2,7 @@
 
 A simple browser extension that automatically clips all digital coupons on the Wegmans website with a single click.
 
-![Wegmans Coupon Clipper](https://via.placeholder.com/500x300?text=Wegmans+Coupon+Clipper)
+![Wegmans Coupon Clipper](https://github.com/the0megastar/WegmansClipAll/blob/main/Wegmans%20Coupon%20Clipper.png)
 
 ## What It Does
 
